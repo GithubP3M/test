@@ -1,0 +1,17 @@
+{
+    "contents" : "complete=function(directory,id=1:332){\n  tot=list()\n  for(i in 1:length(id)){\n    filename=paste(formatC(id[i],width=3,flag=\"0\"),\".csv\",sep=\"\")\n    dirname=paste(directory,filename,sep=\"/\")\n    a=read.csv(dirname)\n    tot[[i]]=a\n  }\n  \n  comp=list()\n  \n  for (i in 1:length(tot)){\n    #linetot=list()\n    linetot=c()\n    iter=1\n    list_it=1\n    size=dim(tot[[i]])[1]\n    while (iter<=size){\n      if (!any(is.na(tot[[i]][iter,]))){\n        #linetot[[list_it]]=tot[[i]][iter,]\n        linetot=rbind(linetot,tot[[i]][iter,])\n        list_it=list_it+1\n      } else {\n        list_it=list_it\n      }\n      iter=iter+1\n    }\n    comp[[i]]=linetot\n  }\n  \n  l=length(comp)\n  nobs=c()\n  id=c()\n  for (i in 1:l){\n    id=rbind(id,comp[[i]][1,4])\n    nobs=rbind(nobs,dim(comp[[i]])[1])\n  }\n  matr=cbind(id,nobs)\n  colnames(matr)=c(\"id\",\"nobs\")\n  rownames(matr)=c(1:dim(matr)[1])\n  return(data.frame(matr))\n  #return(comp)\n}",
+    "created" : 1429394433619.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3911059331",
+    "id" : "64F03E50",
+    "lastKnownWriteTime" : 1429484168,
+    "path" : "E:/repo/r-prog_W2/complete.r",
+    "project_path" : "complete.r",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : true,
+    "type" : "r_source"
+}

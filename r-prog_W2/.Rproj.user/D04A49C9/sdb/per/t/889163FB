@@ -1,0 +1,17 @@
+{
+    "contents" : "corr=function(directory,threshold=0){\n  nobs=complete(directory)\n  #loop to find which file respect the threshold\n  fileid=c()\n  for (obs in 1:dim(nobs)[1]){\n    if (nobs[obs,2]>threshold){\n      fileid=rbind(fileid,nobs[obs,1])\n    }\n  }\n  #loop to read the necessary files\n  tot=list()\n  if (length(fileid)==0){\n    corcol=numeric(0)\n    return(corcol)\n  }else{\n    for(i in 1:length(fileid)){\n      filename=paste(formatC(fileid[i],width=3,flag=\"0\"),\".csv\",sep=\"\")\n      dirname=paste(directory,filename,sep=\"/\")\n      a=read.csv(dirname)\n      tot[[i]]=a\n    }\n  }\n  \n  \n  comp=list()\n  for (i in 1:length(tot)){\n    #linetot=list()\n    linetot=c()\n    iter=1\n    list_it=1\n    size=dim(tot[[i]])[1]\n    while (iter<=size){\n      if (!any(is.na(tot[[i]][iter,]))){\n        #linetot[[list_it]]=tot[[i]][iter,]\n        linetot=rbind(linetot,tot[[i]][iter,])\n        list_it=list_it+1\n      } else {\n        list_it=list_it\n      }\n      iter=iter+1\n    }\n    comp[[i]]=linetot\n  }\n  \n  #calculate corr\n  corcol=c()\n  for (ob in 1:length(comp)){\n    co=cor(comp[[ob]][,2],comp[[ob]][,3])\n    corcol=c(corcol,co)\n  }\n  return(corcol)\n}",
+    "created" : 1429459858899.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1610647762",
+    "id" : "889163FB",
+    "lastKnownWriteTime" : 1429479921,
+    "path" : "E:/repo/r-prog_W2/corr.r",
+    "project_path" : "corr.r",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : true,
+    "type" : "r_source"
+}

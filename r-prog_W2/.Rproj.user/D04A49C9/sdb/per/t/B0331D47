@@ -1,0 +1,17 @@
+{
+    "contents" : "pollutantmean=function(directory,pollutant,id=1:332){\n  coltot=c()\n  for(i in id){\n    filename=paste(formatC(i,width=3,flag=\"0\"),\".csv\",sep=\"\")\n    dirname=paste(directory,filename,sep=\"/\")\n    a=read.csv(dirname)\n    if(pollutant==\"sulfate\"){\n      acol=a[,2]\n      acol=acol[!is.na(acol)]\n    }\n    if(pollutant==\"nitrate\"){\n      acol=a[,3]\n      acol=acol[!is.na(acol)]\n    }\n    coltot=c(coltot,acol)\n  }\n  return(mean(coltot))\n}",
+    "created" : 1429219200809.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3195526555",
+    "id" : "B0331D47",
+    "lastKnownWriteTime" : 1429394485,
+    "path" : "E:/repo/r-prog_W2/pollutantmean.r",
+    "project_path" : "pollutantmean.r",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
